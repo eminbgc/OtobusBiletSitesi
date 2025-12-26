@@ -1,0 +1,467 @@
+
+/* style.css - MODERN VE DÜZELTİLMİŞ VERSİYON */
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Arka plan görseli */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1920&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    /* Sayfa ortalama ayarları */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* İçerikleri alt alta dizebilsin */
+}
+
+/* Ana Beyaz Kutu */
+.container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    margin: 40px auto;
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+h2 { color: #2c3e50; font-weight: 700; margin-bottom: 20px; }
+
+/* Form Elemanları */
+.search-box {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+select, input[type="date"], input[type="text"], input[type="email"] {
+    padding: 12px 15px;
+    border: 2px solid #eee;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    font-size: 15px;
+    width: 200px;
+    outline: none;
+    transition: 0.3s;
+}
+
+select:focus, input:focus {
+    border-color: #3498db;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+.btn {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5253);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-block;
+}
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(238, 82, 83, 0.3);
+}
+
+/* SAĞ ÜST SABİT BUTON */
+.top-right-btn {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid rgba(255,255,255,0.6);
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+    z-index: 9999;
+}
+.top-right-btn:hover {
+    background-color: white;
+    color: #333;
+}
+
+/* --- OTOBÜS VE KOLTUK DÜZENİ (BURASI DÜZELTİLDİ) --- */
+.bus-container {
+    display: inline-block; /* Kutu gibi davranması için */
+    border: 4px solid #ddd;
+    border-radius: 35px;
+    padding: 50px 30px;
+    background-color: #fff;
+    position: relative;
+    margin: 20px 0;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05); /* İç gölgeyle derinlik */
+}
+
+/* Şoför Koltuğu */
+.driver {
+    width: 45px;
+    height: 45px;
+    border: 3px solid #95a5a6;
+    border-radius: 50%;
+    position: absolute; /* Otobüsün içinde sabit yer */
+    top: 20px;
+    left: 30px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%237f8c8d"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>'); /* Basit bir ikon */
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.driver::after {
+    content: 'Kaptan';
+    font-size: 10px;
+    position: absolute;
+    bottom: -15px;
+    left: 2px;
+    color: #7f8c8d;
+}
+
+/* Koltuk Sıraları (Row) */
+.row {
+    display: flex;
+    justify-content: space-between; /* Sol ve Sağ koltukları ayır */
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 40px; /* ORTA KORİDOR BOŞLUĞU */
+    width: 100%;
+}
+
+/* Koltuk Kutucukları */
+.seat {
+    width: 45px;
+    height: 45px;
+    background-color: #ecf0f1;
+    border: 2px solid #bdc3c7;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #7f8c8d;
+    transition: all 0.2s;
+    box-shadow: 0 3px 0 #bdc3c7; /* 3D Efekti */
+}
+
+.seat:active {
+    transform: translateY(3px); /* Basılma efekti */
+    box-shadow: none;
+}
+
+.seat:hover:not(.occupied-male):not(.occupied-female) {
+    border-color: #3498db;
+    color: #3498db;
+}
+
+/* Seçili Koltuk */
+.seat.selected {
+    background-color: #2ecc71;
+    color: white;
+    border-color: #27ae60;
+    box-shadow: 0 3px 0 #27ae60;
+}
+
+/* Dolu Koltuklar */
+.seat.occupied-male {
+    background-color: #3498db;
+    color: white;
+    border-color: #2980b9;
+    box-shadow: 0 3px 0 #2980b9;
+    cursor: not-allowed;
+}
+.seat.occupied-female {
+    background-color: #e84393;
+    color: white;
+    border-color: #c0392b;
+    box-shadow: 0 3px 0 #c0392b;
+    cursor: not-allowed;
+}
+
+/* Yolcu Bilgi Formu */
+#passenger-info {
+    display: none;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px dashed #eee;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Firma Listesi Kartları (Seferler.php için) */
+.company-card {
+    background: white;
+    border: 1px solid #eee;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.company-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #3498db;
+}
+
+
+/* --- style.css --- */
+
+/* Tablo çizgileri ve düzeni (Eski kodlarında varsa burayı geçebilirsin) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+/* YENİ EKLENEN BUTON STİLLERİ */
+.btn {
+    padding: 8px 12px;
+    text-decoration: none; /* Linkin altındaki çizgiyi kaldırır */
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-right: 5px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+/* Güncelle Butonu (Mavi) */
+.btn-guncelle {
+    background-color: #3498db; 
+}
+.btn-guncelle:hover {
+    background-color: #2980b9; /* Üzerine gelince koyulaşır */
+}
+
+/* İptal Butonu (Kırmızı) */
+.btn-iptal {
+    background-color: #e74c3c;
+}
+.btn-iptal:hover {
+    background-color: #c0392b;
+}
+
+
+/* SOL ÜST SABİT BUTON (Firma Giriş) */
+.top-left-btn {
+    position: fixed;
+    top: 25px;
+    left: 30px; /* Soldan hizalama */
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid rgba(255,255,255,0.6);
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+    z-index: 9999;
+    font-family: sans-serif;
+}
+.top-left-btn:hover {
+    background-color: white;
+    color: #333;
+}
+
+
+/* --- FİLTRELEME İÇİN EKLENEN MODERN STİLLER --- */
+
+.btn-filter-toggle {
+    background: linear-gradient(135deg, #3498db, #2980b9); /* Mavi degrade */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px; /* Tam yuvarlak kenar */
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); /* Mavi gölge */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-filter-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+    background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+.filter-box {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid #e9ecef;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+    margin-bottom: 25px;
+}
+
+.filter-input {
+    width: 100px !important;
+    padding: 10px !important;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    text-align: center;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.filter-input:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.btn-filter-apply {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-filter-apply:hover {
+    background-color: #27ae60;
+}
+
+.btn-filter-clear {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+.btn-filter-clear:hover {
+    background-color: #c0392b;
+}
+
+
+/* --- MODERN BUTON TASARIMLARI (Bilet Detay Sayfası İçin) --- */
+
+/* Butonları yan yana ve düzgün hizalamak için kapsayıcı */
+.action-buttons {
+    display: flex;
+    gap: 15px; /* Butonlar arası boşluk */
+    justify-content: space-between; /* Sağa ve sola yasla */
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+/* Tüm butonlar için ortak modern özellikler */
+.btn-cancel, .btn-update, .btn-guncelle {
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px; /* Tam yuvarlak kenarlar */
+    font-family: 'Poppins', sans-serif; /* Varsa fontun */
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Yumuşak animasyon */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* İkon ve yazı arası boşluk */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Hafif gölge */
+}
+
+/* Butonların üzerine gelince (Hover) ortak efekt */
+.btn-cancel:hover, .btn-update:hover, .btn-guncelle:hover {
+    transform: translateY(-3px); /* Yukarı doğru hafif kalkma */
+    box-shadow: 0 7px 14px rgba(0,0,0,0.15); /* Gölgeyi büyüt */
+}
+.btn-cancel:active, .btn-update:active, .btn-guncelle:active {
+    transform: translateY(-1px); /* Tıklanma hissi */
+}
+
+/* 1. İPTAL ET BUTONU (Kırmızı Gradient) */
+.btn-cancel {
+    background: linear-gradient(135deg, #ff6b6b, #ee5253);
+    box-shadow: 0 4px 15px rgba(238, 82, 83, 0.4);
+}
+.btn-cancel:hover {
+    background: linear-gradient(135deg, #ee5253, #d63031);
+    box-shadow: 0 8px 20px rgba(238, 82, 83, 0.6);
+}
+
+/* 2. TARİH GÜNCELLE BUTONU (Turuncu/Altın Gradient) */
+.btn-update {
+    background: linear-gradient(135deg, #feca57, #ff9f43);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(255, 159, 67, 0.4);
+}
+.btn-update:hover {
+    background: linear-gradient(135deg, #ff9f43, #e67e22);
+    box-shadow: 0 8px 20px rgba(255, 159, 67, 0.6);
+}
+
+/* 3. KAYDET BUTONU (Mavi/Yeşil - Güncelleme alanı içindeki) */
+.btn-guncelle {
+    background: linear-gradient(135deg, #0abde3, #48dbfb);
+    padding: 10px 20px; /* Biraz daha kompakt */
+    border-radius: 8px; /* Form içinde olduğu için hafif köşeli */
+    width: 100%; /* Form genişliğine yayılmasın, yanındaki inputa uysun diye flex kullanmıştık ama */
+    box-shadow: 0 4px 15px rgba(72, 219, 251, 0.4);
+}
+.btn-guncelle:hover {
+    background: linear-gradient(135deg, #00d2d3, #0abde3);
+}
+
+/* Güncelleme Alanı İçin Ufak Düzenleme */
+.update-area {
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 15px;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
